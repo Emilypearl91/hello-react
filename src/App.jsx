@@ -1,26 +1,17 @@
-import { useEffect, useState,} from 'react'
-import Axios  from 'axios';
 import './App.css'
-
+import { BrowserRouter, Routes, Route, Link} from 'react-router-dom'
+import { Home } from './pages/Home';
 function App() {
-const [catFact , setCatFact] = useState("");
- const fetchCatFact = () => {
-  Axios.get("https://catfact.ninja/fact").then((res) => {
-  setCatFact(res.data.fact);
- });
-}
-useEffect(() => {
-  Axios.get("https://catfact.ninja/fact").then((res) => {
-  setCatFact(res.data.fact);
-});
-}, [])
-
 
   return (
-    <>
-  <p>{catFact}</p>
-  <button onClick={fetchCatFact}>Generate Cat Fact</button>
-    </>
+ <>
+ <BrowserRouter>
+ <div><Link to='/'> Home</Link></div>
+ <Routes>
+  <Route path='/' element={<Home/>}/>
+ </Routes>
+ </BrowserRouter>
+ </>
   );
 };
 
